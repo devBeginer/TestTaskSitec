@@ -1,17 +1,19 @@
 package com.devbeginner.testtasksitec.di;
 
-import android.os.Build;
-import android.util.Base64;
+//import android.arch.persistence.room.Room;
+
+import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
+import com.devbeginner.testtasksitec.AppDatabase;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
-import java.util.Arrays;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -27,22 +29,23 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class DI {
+
+    public static void initDB(Context context) {
+        if (DATABASE_INSTANCE == null) {
+            DATABASE_INSTANCE
+                    = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "database").build();
+        }
+    }
+
+
     private static final String BASEURL = "https://dev.sitec24.ru/UKA_TRADE/hs/MobileClient/";
 
-
-    public DI() {
-    }
-
-    private static final DI INSTANCE = new DI();
     private static final Retrofit RETROFIT_INSTANCE = provideRetrofit(provideGson(), provideHttpClient());
 
-    public static DI getINSTANCE() {
-        return INSTANCE;
-    }
+    private static AppDatabase DATABASE_INSTANCE;
 
     private static OkHttpClient.Builder getUnsafeOkHttpClientBuilder() {
         try {
@@ -72,7 +75,7 @@ public class DI {
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             //if (Build.VERSION.SDK_INT < 29) {
-                builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
             //}
             builder.hostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -123,7 +126,6 @@ public class DI {
                 .create();
     }
 
-
     private static Retrofit provideRetrofit(Gson gson, OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl(BASEURL)
@@ -135,5 +137,9 @@ public class DI {
 
     public static Retrofit getRetrofitInstance() {
         return RETROFIT_INSTANCE;
+    }
+
+    public static AppDatabase getDatabaseInstance() {
+        return DATABASE_INSTANCE;
     }
 }
