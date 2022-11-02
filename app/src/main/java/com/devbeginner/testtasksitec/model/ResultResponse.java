@@ -1,17 +1,17 @@
 package com.devbeginner.testtasksitec.model;
 
 public class ResultResponse {
-    private Integer code;
+    private int code;
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public ResultResponse(Integer code){
+    public ResultResponse(int code){
         this.code = code;
     }
 }

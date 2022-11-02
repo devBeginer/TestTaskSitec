@@ -30,7 +30,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(values.get(position).getCode().toString());
+        holder.textView.setText(Integer.toString(values.get(position).getCode()));
     }
 
     @Override
