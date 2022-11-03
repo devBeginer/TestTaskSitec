@@ -1,7 +1,5 @@
-package com.devbeginner.testtasksitec;
+package com.devbeginner.testtasksitec.model;
 
-/*import android.arch.persistence.room.TypeConverter;
-import android.arch.persistence.room.TypeConverters;*/
 
 import androidx.room.TypeConverter;
 

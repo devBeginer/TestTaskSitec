@@ -1,8 +1,4 @@
-package com.devbeginner.testtasksitec.model;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
+package com.devbeginner.testtasksitec.model.response;
 
 public class UsersResponse {
     Users users;

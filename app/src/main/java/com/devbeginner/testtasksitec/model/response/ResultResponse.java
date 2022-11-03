@@ -1,4 +1,4 @@
-package com.devbeginner.testtasksitec.model;
+package com.devbeginner.testtasksitec.model.response;
 
 public class ResultResponse {
     private int code;

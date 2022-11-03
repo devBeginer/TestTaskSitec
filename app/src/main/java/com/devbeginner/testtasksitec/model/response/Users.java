@@ -1,11 +1,11 @@
-package com.devbeginner.testtasksitec.model;
+package com.devbeginner.testtasksitec.model.response;
+
+import com.devbeginner.testtasksitec.model.User;
 
 import java.util.ArrayList;
 
 public class Users {
-    //@SerializedName("ListUsers")
     ArrayList<User> listUsers;
-    //@SerializedName("CurrentUid")
     String currentUid;
 
     public ArrayList<User> getListUsers() {

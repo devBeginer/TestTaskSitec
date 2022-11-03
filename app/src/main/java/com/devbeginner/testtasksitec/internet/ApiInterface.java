@@ -1,7 +1,7 @@
-package com.devbeginner.testtasksitec;
+package com.devbeginner.testtasksitec.internet;
 
-import com.devbeginner.testtasksitec.model.ResultResponse;
-import com.devbeginner.testtasksitec.model.UsersResponse;
+import com.devbeginner.testtasksitec.model.response.ResultResponse;
+import com.devbeginner.testtasksitec.model.response.UsersResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

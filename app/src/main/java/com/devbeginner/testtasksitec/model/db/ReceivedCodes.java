@@ -1,4 +1,4 @@
-package com.devbeginner.testtasksitec.model;
+package com.devbeginner.testtasksitec.model.db;
 
 /*import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;*/
@@ -18,5 +18,9 @@ public class ReceivedCodes {
     public ReceivedCodes(int code, UUID user){
         this.code = code;
         this.user = user;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

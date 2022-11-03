@@ -8,15 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.devbeginner.testtasksitec.model.ResultResponse;
+import com.devbeginner.testtasksitec.model.db.ReceivedCodes;
 
 import java.util.ArrayList;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private ArrayList<ResultResponse> values;
+    private ArrayList<ReceivedCodes> values;
 
-    public ItemAdapter (ArrayList<ResultResponse> values){
+    public ItemAdapter (ArrayList<ReceivedCodes> values){
         this.values = values;
     }
 
@@ -30,6 +30,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //holder.textView.setText(Integer.toString(values.get(position).getCode()));
         holder.textView.setText(Integer.toString(values.get(position).getCode()));
     }
 
