@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 
+import com.devbeginner.testtasksitec.di.Singleton;
 import com.devbeginner.testtasksitec.internet.OnError;
 import com.devbeginner.testtasksitec.R;
 import com.devbeginner.testtasksitec.model.User;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
 
-        MainViewModel mainViewModel = new MainViewModel();
+        MainViewModel mainViewModel = Singleton.getMainViewModelInstance();
         mainViewModel.getUsersList(imei).observe(this, new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> strings) {

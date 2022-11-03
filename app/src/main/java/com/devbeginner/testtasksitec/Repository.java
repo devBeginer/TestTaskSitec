@@ -3,7 +3,6 @@ package com.devbeginner.testtasksitec;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.devbeginner.testtasksitec.di.DI;
 import com.devbeginner.testtasksitec.internet.ApiInterface;
 import com.devbeginner.testtasksitec.internet.OnResponse;
 import com.devbeginner.testtasksitec.model.db.ReceivedCodes;
@@ -18,15 +17,18 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Repository {
     private ApiInterface apiInterface;
     private ResultDao resultDao;
 
-    public Repository() {
-        apiInterface = DI.getRetrofitInstance().create(ApiInterface.class);
+    public Repository(Retrofit retrofit, ResultDao resultDao) {
+        apiInterface = retrofit.create(ApiInterface.class);
+        //apiInterface = DI.getRetrofitInstance().create(ApiInterface.class);
 
-        resultDao = DI.getDatabaseInstance().resultDao();
+        this.resultDao = resultDao;
+        //resultDao = DI.getDatabaseInstance().resultDao();
     }
 
     public LiveData<List<ReceivedCodes>> getDBResults(UUID user){

@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class SecondViewModel extends ViewModel {
-    public SecondViewModel(){}
-    private Repository repository = new Repository();
+
+    private Repository repository;
+    public SecondViewModel(Repository repository){
+        this.repository = repository;
+    }
 
     public LiveData<List<ReceivedCodes>> getCodes(UUID uuid) {
         return repository.getDBResults(uuid);

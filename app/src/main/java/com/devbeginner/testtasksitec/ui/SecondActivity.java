@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import com.devbeginner.testtasksitec.ItemAdapter;
 import com.devbeginner.testtasksitec.R;
+import com.devbeginner.testtasksitec.di.Singleton;
 import com.devbeginner.testtasksitec.model.db.ReceivedCodes;
 import com.devbeginner.testtasksitec.viewmodel.SecondViewModel;
 
@@ -36,7 +37,7 @@ public class SecondActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new ItemAdapter(list));
 
-        SecondViewModel secondViewModel = new SecondViewModel();
+        SecondViewModel secondViewModel = Singleton.getSecondViewModelInstance();
 
         secondViewModel.getCodes(UUID.fromString(uuid)).observe(this, new Observer<List<ReceivedCodes>>() {
             @Override

@@ -20,13 +20,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class MainViewModel extends ViewModel {
+    private Repository repository;
 
-    public MainViewModel() {
+    public MainViewModel(Repository repository) {
+        this.repository = repository;
     }
 
     private ArrayList<User> usersList;
 
-    private Repository repository = new Repository();
 
     private MutableLiveData<Integer> currentUid = new MutableLiveData<Integer>();
 

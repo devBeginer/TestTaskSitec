@@ -1,6 +1,5 @@
 package com.devbeginner.testtasksitec.di;
 
-//import android.arch.persistence.room.Room;
 
 import android.content.Context;
 
@@ -8,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Room;
 
 import com.devbeginner.testtasksitec.AppDatabase;
+import com.devbeginner.testtasksitec.Repository;
+import com.devbeginner.testtasksitec.viewmodel.MainViewModel;
+import com.devbeginner.testtasksitec.viewmodel.SecondViewModel;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,7 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class DI {
+public class Singleton {
 
     public static void initDB(Context context) {
         if (DATABASE_INSTANCE == null) {
@@ -104,10 +106,7 @@ public class DI {
                         // Настраиваем запросы
                         Request request = original.newBuilder()
                                 .header("Accept", "application/json")
-                                //.header("Authorization", "basic " +
-                                //        Arrays.toString(Base64.encode("http:http".getBytes(), Base64.NO_WRAP)))
                                 .header("Authorization", Credentials.basic("http", "http"))
-                                //.method(original.method(), original.body())
                                 .build();
 
                         Response response = chain.proceed(request);
@@ -142,4 +141,29 @@ public class DI {
     public static AppDatabase getDatabaseInstance() {
         return DATABASE_INSTANCE;
     }
+
+    public static MainViewModel getMainViewModelInstance() {
+        return MainViewModelHolder.MAIN_VIEWMODEL_INSTANCE;
+    }
+
+    public static SecondViewModel getSecondViewModelInstance() {
+        return SecondViewModelHolder.SECOND_VIEWMODEL_INSTANCE;
+    }
+
+    private static class RepositoryHolder{
+        private static final Repository repository = new Repository(getRetrofitInstance(), getDatabaseInstance().resultDao());
+    }
+
+    public static Repository getRepositoryInstance(){
+        return RepositoryHolder.repository;
+    }
+
+    private static class MainViewModelHolder{
+        private static final MainViewModel MAIN_VIEWMODEL_INSTANCE = new MainViewModel(getRepositoryInstance());
+    }
+
+    private static class SecondViewModelHolder{
+        private static final SecondViewModel SECOND_VIEWMODEL_INSTANCE = new SecondViewModel(getRepositoryInstance());
+    }
+
 }
