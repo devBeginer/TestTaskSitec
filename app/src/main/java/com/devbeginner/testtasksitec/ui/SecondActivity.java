@@ -28,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String uuid = intent.getStringExtra("uuid");
 
-        ArrayList</*ResultResponse*/ReceivedCodes> list = new ArrayList<>();
+        ArrayList<ReceivedCodes> list = new ArrayList<>();
 
 
 
